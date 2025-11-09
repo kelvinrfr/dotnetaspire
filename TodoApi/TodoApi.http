@@ -1,0 +1,19 @@
+@TodoApi_HostAddress = http://localhost:5222
+
+### Add a new todo item
+POST {{TodoApi_HostAddress}}/api/todo
+Content-Type: application/json
+
+{
+  "title": "Complete project",
+  "description": "Finish the todo API project",
+  "isCompleted": false
+}
+
+###
+
+### Get a todo item by ID (replace {id} with actual ID from POST response)
+GET {{TodoApi_HostAddress}}/api/todo/{id}
+Accept: application/json
+
+###

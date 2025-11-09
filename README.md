@@ -1,0 +1,2 @@
+# dotnetaspire
+Tests with Aspire

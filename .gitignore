@@ -1,0 +1,51 @@
+## Ignore build and tool artifacts for .NET projects
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.vs/
+
+# Build Results
+[Dd]ebug*/
+[Rr]elease*/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+TestResults/
+out/
+
+# Rider
+.idea/
+*.sln.iml
+
+# Visual Studio Code settings
+.vscode/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# NPM Packages
+node_modules/
+
+# User-specific files
+*.swp
+*.bak
+
+# Publish artifacts
+publish/
+artifacts/
+
+# DotNet CLI tools
+.dotnet/
+PackageArtifacts/
+
+# Other files and folders to ignore
+# Uncomment and edit as needed
+# logs/
+# *.log
+
