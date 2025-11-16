@@ -64,7 +64,7 @@ public class TodoService : ITodoService
 
             await _cache.SetStringAsync(cacheKey, serializedItem, options);
             _logger.LogInformation("Added todo item {Id} to Redis cache", item.Id);
-            
+
             return item;
         }
         catch (Exception ex)
