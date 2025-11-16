@@ -20,7 +20,6 @@ builder.AddProject<Projects.TodoApi>("api")
     .WithReference(cache)
     .WithEnvironment("ConnectionStrings__Redis", cache.Resource.ConnectionStringExpression) // Overwrites the environment variable
     .WaitFor(cache)
-    .WaitFor(pubsubEmulator)
-    .WaitFor(pubsubBrowser);
+    .WaitFor(pubsubEmulator);
 
 builder.Build().Run();
