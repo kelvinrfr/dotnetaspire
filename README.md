@@ -3,6 +3,7 @@ Tests with Aspire
 
 Todo:
 - [ ] Spin up My Sql database and expose to the app
+- [ ] Fly way migrations
 - [x] Expose pubsub emulator and expose to the app
 - [ ] Connect api with Pubsub and build the open telemetry
     - will publish a message whenever a item is created
