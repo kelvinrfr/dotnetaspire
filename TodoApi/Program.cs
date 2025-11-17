@@ -7,6 +7,7 @@ using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using TodoApi.Services;
+using TodoApi.Healthz;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,10 +15,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddHealthChecks()
+    .AddCheck<RedisHealthCheck>(name: "redis");
 
 // Configure Redis
-var redisConnectionString = builder.Configuration.GetConnectionString("Redis") 
-    ?? "localhost:6379";
+var redisConnectionString = builder
+    .Configuration.GetConnectionString("redis") ?? throw new Exception("Missing redis connection string");
 
 builder.Services.AddStackExchangeRedisCache(options =>
 {
@@ -65,11 +68,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.MapHealthChecks(pattern: "healthz");
 app.UseAuthorization();
 app.MapControllers();
 
 // Mocking a health check implementation
-app.MapGet("/healthz", () => Results.Ok("Ok"));
+//app.MapGet("/healthz", () => Results.Ok("Ok"));
 
 app.Run();

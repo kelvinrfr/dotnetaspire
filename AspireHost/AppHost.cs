@@ -9,7 +9,7 @@ var mysqlPassword =builder.AddParameter("mysqlRootPassword", secret: true);
 // which defaults to "library/mysql" with tag "9.5" unless overridden.
 // To explicitly set the MySQL version, use WithImage and specify the desired tag.
 // Expose MySQL on host port 33306 so you can connect with tools like DBeaver
-var mysql = builder.AddMySql("database", password: mysqlPassword, port: 33322)
+var mysql = builder.AddMySql("mysql", password: mysqlPassword, port: 33322)
     .WithImage("library/mysql", "9.5") // Specify MySQL version
     // Set MySQL container lifetime to Persistent.
     .WithLifetime(ContainerLifetime.Persistent)
@@ -17,7 +17,7 @@ var mysql = builder.AddMySql("database", password: mysqlPassword, port: 33322)
     .WaitFor(mysqlPassword);
 
 builder
-    .AddDockerfile("migrations", ".", "Flyway.Database-Migrations.dockerfile")
+    .AddDockerfile("flyway", ".", "Flyway.Database-Migrations.dockerfile")
     .WithImageTag("1.0.0")
     .WithBindMount("../Migrations", "/flyway/sql")
     .WaitFor(mysql)
