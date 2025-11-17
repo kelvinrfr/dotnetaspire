@@ -44,15 +44,8 @@ public class TodoService : ITodoService
     {
         try
         {
-            if (string.IsNullOrEmpty(item.Id))
-            {
-                item.Id = Guid.NewGuid().ToString();
-            }
-
-            if (item.CreatedAt == default)
-            {
-                item.CreatedAt = DateTime.UtcNow;
-            }
+            item.Id = Guid.NewGuid();
+            item.CreatedAt = DateTime.UtcNow;
 
             var cacheKey = $"{CacheKeyPrefix}{item.Id}";
             var serializedItem = JsonSerializer.Serialize(item);
